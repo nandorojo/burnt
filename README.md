@@ -14,6 +14,22 @@ Currently, it only works on iOS, by wrapping [`SPIndicator`](https://github.com/
 
 Burnt works with the new architecture (+ old) and is built on top of JSI, thanks to Expo's new module system.
 
+## Features
+
+- Simple, imperative `toast` that uses **native** components under the hood, rather than using React state with JS-based UI.
+- Animated icons
+- 
+
+## TODO
+
+- [x] iOS support
+- [ ] Android support (I probably won't build this myself, but maybe you could add it!)
+- [ ] Web support (could be cool to use Radix UI...but maybe I'll leave that part up to Zeego)
+- [ ] Custom iOS Icons
+
+Chances are, I'll keep this lib to iOS-only (and maybe Android), and then another library can consume it to build a broader API out on the JS side, such as [Zeego](https://zeego.dev).
+
+
 ## Installation
 
 ```sh
