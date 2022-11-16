@@ -68,17 +68,17 @@ expo install burnt expo-build-properties
 
 Add the `expo-build-properties` plugin to your `app.json`/`app.config.js`, setting the deployment target to `13.0` (or higher):
 
-```json
-{
-  "plugins": [
+```js
+export default {
+  plugins: [
     [
       'expo-build-properties',
       {
         ios: {
           deploymentTarget: '13.0',
         },
-      },
-    ],
+      }
+    ]
   ]
 }
 ```
