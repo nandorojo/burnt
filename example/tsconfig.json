@@ -1,0 +1,10 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "burnt": ["../src/index"],
+      "burnt/*": ["../src/*"]
+    }
+  }
+}

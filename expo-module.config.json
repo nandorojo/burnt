@@ -1,0 +1,9 @@
+{
+  "platforms": ["ios", "android", "web"],
+  "ios": {
+    "modules": ["BurntModule"]
+  },
+  "android": {
+    "modules": ["expo.modules.burnt.BurntModule"]
+  }
+}
