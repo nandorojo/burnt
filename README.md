@@ -2,6 +2,10 @@
 
 Cross-platform toasts for React Native, powered by native elements.
 
+https://user-images.githubusercontent.com/13172299/202289223-8a333223-3afa-49c4-a001-a70c76150ef0.mp4
+
+
+
 You can open a full-screen alert:
 
 https://user-images.githubusercontent.com/13172299/202275324-4f6cb5f5-a103-49b5-993f-2030fc836edb.mp4
@@ -144,5 +148,7 @@ npx expo run:ios # do this again whenever you change native code
 You can edit the iOS files in `ios/`, and then update the JS accordingly in `src`.
 
 ## Thanks
+
+Special thanks to [Tomasz Sapeta](https://twitter.com/tsapeta) for offering help along the way.
 
 Expo Modules made this so easy to build, and all with Swift – no Objective C. It's my first time writing Swift, and it was truly a breeze.
