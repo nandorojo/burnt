@@ -122,6 +122,16 @@ export const alert = () => {
 
 Does what you think it does! In the future, I'll allow async spinners for promises, and it'll be useful then.
 
+## Contribute
+
+```sh
+yarn build
+cd example
+npx expo run:ios # do this again whenever you change native code
+```
+
+You can edit the iOS files in `ios/`, and then update the JS accordingly in `src`.
+
 ## Thanks
 
 Expo Modules made this so easy to build, and all with Swift – no Objective C. It's my first time writing Swift, and it was truly a breeze.
