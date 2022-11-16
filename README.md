@@ -61,17 +61,23 @@ yarn add burnt
 ### Expo
 
 ```sh
-npx expo prebuild --clean
-npx expo run:ios
+expo install burnt
 ```
 
-Next, add the config plugin to your `app.json`:
+Add the config plugin to your `app.json`/`app.config.js`:
 
 ```json
 {
   "plugins": ["burnt"]
 }
 ```
+
+Then, you'll need to rebuild your dev client. Burnt will not work in Expo Go.
+
+```sh
+npx expo prebuild --clean
+npx expo run:ios
+``` 
 
 The config plugin ensures that your iOS app has at least iOS 13 as a deployment
 target, which is required for Burnt (as well as Expo SDK 47+).
