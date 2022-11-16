@@ -2,6 +2,8 @@ PODS:
   - boost (1.76.0)
   - Burnt (0.1.0):
     - ExpoModulesCore
+    - SPAlert
+    - SPIndicator
   - DoubleConversion (1.1.6)
   - EXApplication (5.0.1):
     - ExpoModulesCore
@@ -18,6 +20,9 @@ PODS:
   - ExpoModulesCore (1.0.3):
     - React-Core
     - ReactCommon/turbomodule/core
+  - EXSplashScreen (0.17.5):
+    - ExpoModulesCore
+    - React-Core
   - FBLazyVector (0.70.5)
   - FBReactNativeSpec (0.70.5):
     - RCT-Folly (= 2021.07.22.00)
@@ -303,6 +308,8 @@ PODS:
     - React-jsi (= 0.70.5)
     - React-logger (= 0.70.5)
     - React-perflogger (= 0.70.5)
+  - SPAlert (4.2.0)
+  - SPIndicator (1.6.4)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -316,6 +323,7 @@ DEPENDENCIES:
   - Expo (from `../node_modules/expo`)
   - ExpoKeepAwake (from `../node_modules/expo-keep-awake/ios`)
   - ExpoModulesCore (from `../node_modules/expo-modules-core`)
+  - EXSplashScreen (from `../node_modules/expo-splash-screen/ios`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native/React/FBReactNativeSpec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
@@ -351,6 +359,8 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - fmt
+    - SPAlert
+    - SPIndicator
 
 EXTERNAL SOURCES:
   boost:
@@ -373,6 +383,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-keep-awake/ios"
   ExpoModulesCore:
     :path: "../node_modules/expo-modules-core"
+  EXSplashScreen:
+    :path: "../node_modules/expo-splash-screen/ios"
   FBLazyVector:
     :path: "../node_modules/react-native/Libraries/FBLazyVector"
   FBReactNativeSpec:
@@ -436,7 +448,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   boost: a7c83b31436843459a1961bfd74b96033dc77234
-  Burnt: 210f03a2594dac7f0f7f374493755621fe18a1e3
+  Burnt: 1e15a7fcc918487600bdf071a8ddb30459c932a2
   DoubleConversion: 5189b271737e1565bdce30deb4a08d647e3f5f54
   EXApplication: 034b1c40a8e9fe1bff76a1e511ee90dff64ad834
   EXConstants: 3c86653c422dd77e40d10cbbabb3025003977415
@@ -445,6 +457,7 @@ SPEC CHECKSUMS:
   Expo: a581e979539bae3e49cd02d9dee2432947383d3b
   ExpoKeepAwake: 69b59d0a8d2b24de9f82759c39b3821fec030318
   ExpoModulesCore: b5d21c8880afda6fb6ee95469f9ac2ec9b98e995
+  EXSplashScreen: 3e989924f61a8dd07ee4ea584c6ba14be9b51949
   FBLazyVector: affa4ba1bfdaac110a789192f4d452b053a86624
   FBReactNativeSpec: fe8b5f1429cfe83a8d72dc8ed61dc7704cac8745
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
@@ -475,6 +488,8 @@ SPEC CHECKSUMS:
   React-RCTVibration: 8e5c8c5d17af641f306d7380d8d0fe9b3c142c48
   React-runtimeexecutor: 7401c4a40f8728fd89df4a56104541b760876117
   ReactCommon: c9246996e73bf75a2c6c3ff15f1e16707cdc2da9
+  SPAlert: 735da1f16a887e294719217572ce1f936d8c8782
+  SPIndicator: 93e0a4fb23de51294ac48e874c0f081a5e293e4f
   Yoga: eca980a5771bf114c41a754098cd85e6e0d90ed7
 
 PODFILE CHECKSUM: f87eb38212763a634a44df102b36fba5412ff50e

@@ -1,4 +1,69 @@
 import ExpoModulesCore
+import SPIndicator
+import SPAlert
+ 
+enum AlertPreset: String, Enumerable {
+  case done
+  case error
+  case heart
+  case spinner
+
+  func toSPAlertIconPreset() -> SPAlertIconPreset {
+    switch self {
+    case .done:
+      return .done
+    case .error:
+      return .error
+    case .heart:
+      return .heart
+    case .spinner:
+      return .spinner
+    }
+  }
+}
+
+struct AlertOptions: Record {
+  @Field
+  var title: String = ""
+  
+  @Field
+  var message: String?
+
+  @Field
+  var preset: AlertPreset = AlertPreset.done
+
+  @Field
+  var duration: TimeInterval?
+}
+
+
+struct ToastOptions: Record {
+  @Field
+  var title: String = ""
+  
+  @Field
+  var message: String?
+
+  @Field
+  var preset: ToastPreset = ToastPreset.done
+
+  @Field
+  var duration: TimeInterval?
+}
+
+enum ToastPreset {
+  case done
+  case error
+
+  func toSPIndicatorPreset() -> SPIndicatorPreset {
+    switch self {
+    case .done:
+      return .done
+    case .error:
+      return .error
+    }
+  }
+}
 
 public class BurntModule: Module {
   // Each module class must implement the definition function. The definition consists of components
@@ -10,35 +75,23 @@ public class BurntModule: Module {
     // The module will be accessible from `requireNativeModule('Burnt')` in JavaScript.
     Name("Burnt")
 
-    // Sets constant properties on the module. Can take a dictionary or a closure that returns a dictionary.
-    Constants([
-      "PI": Double.pi
-    ])
+    AsyncFunction("toastAsync") { (options: ToastOptions) -> Void in
+      SPIndicator.present(title: options.title, message: options.message, preset: options.preset.toSPIndicatorPreset())
+    }.runOnQueue(.main) 
 
-    // Defines event names that the module can send to JavaScript.
-    Events("onChange")
+    AsyncFunction("alertAsync")  { (options: AlertOptions) -> Void in
+      let view = SPAlertView(
+        title: options.title, message: options.message, preset: options.preset.toSPAlertIconPreset())
 
-    // Defines a JavaScript synchronous function that runs the native code on the JavaScript thread.
-    Function("hello") {
-      return "Hello world! 👋"
-    }
-
-    // Defines a JavaScript function that always returns a Promise and whose native code
-    // is by default dispatched on the different thread than the JavaScript runtime runs on.
-    AsyncFunction("setValueAsync") { (value: String) in
-      // Send an event to JavaScript.
-      self.sendEvent("onChange", [
-        "value": value
-      ])
-    }
-
-    // Enables the module to be used as a native view. Definition components that are accepted as part of the
-    // view definition: Prop, Events.
-    View(BurntView.self) {
-      // Defines a setter for the `name` prop.
-      Prop("name") { (view: BurntView, prop: String) in
-        print(prop)
+      if let duration = options.duration {
+        view.duration = duration
       }
+
+      view.present()
+    }.runOnQueue(.main) 
+
+    AsyncFunction("dismissAllAlertsAsync") {
+      return SPAlert.dismiss()
     }
   }
 }
