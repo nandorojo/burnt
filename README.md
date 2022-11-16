@@ -1,35 +1,148 @@
-# burnt
+# 🍞 burnt
 
-Cross-platform toasts, powered by native elements.
+Cross-platform toasts for React Native, powered by native elements.
 
-# API documentation
+You can open a full-screen alert:
 
-- [Documentation for the main branch](https://github.com/expo/expo/blob/main/docs/pages/versions/unversioned/sdk/burnt.md)
-- [Documentation for the latest stable release](https://docs.expo.dev/versions/latest/sdk/burnt/)
+https://user-images.githubusercontent.com/13172299/202275324-4f6cb5f5-a103-49b5-993f-2030fc836edb.mp4
 
-# Installation in managed Expo projects
+...or a toast (and pick the side):
 
-For [managed](https://docs.expo.dev/versions/latest/introduction/managed-vs-bare/) Expo projects, please follow the installation instructions in the [API documentation for the latest stable release](#api-documentation). If you follow the link and there is no documentation available then this library is not yet usable within managed projects &mdash; it is likely to be included in an upcoming Expo SDK release.
+https://user-images.githubusercontent.com/13172299/202275423-300671e5-3918-4d5d-acae-0602160de252.mp4
 
-# Installation in bare React Native projects
 
-For bare React Native projects, you must ensure that you have [installed and configured the `expo` package](https://docs.expo.dev/bare/installing-expo-modules/) before continuing.
+## Context
 
-### Add the package to your npm dependencies
+See this [Twitter thread](https://twitter.com/FernandoTheRojo/status/1592923529644625920).
 
+## What
+
+This is a library with a `toast` and `alert` method for showing ephemeral UI. 
+
+Currently, it only works on iOS, by wrapping [`SPIndicator`](https://github.com/ivanvorobei/SPIndicator) and [`SPAlert`](https://github.com/ivanvorobei/SPAlert).
+
+Burnt works with the new architecture (+ old) and is built on top of JSI, thanks to Expo's new module system.
+
+## Features
+
+- Simple, imperative `toast` that uses **native** components under the hood, rather than using React state with JS-based UI.
+- Animated icons
+- iOS App Store-like `alert` popups
+
+## Usage
+
+```tsx
+import * as Burnt from 'burnt'
+
+Burnt.toast({
+  title: "That's hot!"
+})
 ```
-npm install burnt
+
+You can also `Burnt.alert()` and `Burnt.dismissAllAlerts()`.
+
+## TODO
+
+- [x] iOS support
+- [ ] Android support (I probably won't build this myself, but maybe you could add it!)
+- [ ] Web support (could be cool to use Radix UI...but maybe I'll leave that part up to Zeego)
+- [ ] Custom iOS icons
+
+Chances are, I'll keep this lib to iOS-only (and maybe Android), and then another library can consume it to build a broader API out on the JS side, such as [Zeego](https://zeego.dev).
+
+
+## Installation
+
+```sh
+yarn add burnt
 ```
 
-### Configure for iOS
+### Expo
 
-Run `npx pod-install` after installing the npm package.
+```sh
+npx expo prebuild --clean
+npx expo run:ios
+```
 
+### Plain React Native
 
-### Configure for Android
+```sh
+pod install
+```
 
+### Solito
 
+```sh
+cd applications/app
+yarn add burnt
+npx expo prebuild --clean
+npx expo run:ios
+cd ../..
+yarn
+```
 
-# Contributing
+## API
 
-Contributions are very welcome! Please refer to guidelines described in the [contributing guide]( https://github.com/expo/expo#contributing).
+### `toast`
+
+`alert(options): Promise<void>`
+
+```tsx
+Burnt.toast({
+  title: 'Congrats!', // required
+  
+  preset: 'done',     // or "error"
+  
+  message: '',        // optional
+  
+  // ...TODO
+})
+```
+
+### `alert`
+
+`alert(options): Promise<void>`
+
+```tsx
+import * as Burnt from 'burnt'
+
+export const alert = () => {
+  Burnt.alert({
+    title: 'Congrats!', // required
+
+    preset: 'done',     // or "error", "success"
+
+    message: '',        // optional
+
+    // optional
+    layout: {
+      iconSize: {
+        height: 24,
+        width: 24
+      },
+      margins: {
+        top: 10
+      },
+      spaceBetweenIconAndTitle: 8
+    }
+  })
+}
+```
+
+### `dismissAllAlerts()`
+
+Does what you think it does! In the future, I'll allow async spinners for promises, and it'll be useful then.
+
+## Contribute
+
+```sh
+yarn build
+cd example
+npx expo run:ios # do this again whenever you change native code
+```
+
+You can edit the iOS files in `ios/`, and then update the JS accordingly in `src`.
+
+## Thanks
+
+Expo Modules made this so easy to build, and all with Swift – no Objective C. It's my first time writing Swift, and it was truly a breeze.
