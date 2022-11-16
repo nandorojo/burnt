@@ -18,14 +18,26 @@ Burnt works with the new architecture (+ old) and is built on top of JSI, thanks
 
 - Simple, imperative `toast` that uses **native** components under the hood, rather than using React state with JS-based UI.
 - Animated icons
-- 
+- iOS App Store-like `alert` popups
+
+## Usage
+
+```tsx
+import * as Burnt from 'burnt'
+
+Burnt.toast({
+  title: "That's hot!"
+})
+```
+
+You can also `Burnt.alert()` and `Burnt.dismissAllAlerts()`.
 
 ## TODO
 
 - [x] iOS support
 - [ ] Android support (I probably won't build this myself, but maybe you could add it!)
 - [ ] Web support (could be cool to use Radix UI...but maybe I'll leave that part up to Zeego)
-- [ ] Custom iOS Icons
+- [ ] Custom iOS icons
 
 Chances are, I'll keep this lib to iOS-only (and maybe Android), and then another library can consume it to build a broader API out on the JS side, such as [Zeego](https://zeego.dev).
 
@@ -59,6 +71,56 @@ npx expo run:ios
 cd ../..
 yarn
 ```
+
+## API
+
+### `toast`
+
+```tsx
+Burnt.toast({
+  title: 'Congrats!', // required
+  
+  preset: 'done',     // or "error"
+  
+  message: '',        // optional
+  
+  // ...TODO
+})
+```
+
+### `alert`
+
+`alert(options): Promise<void>`
+
+```tsx
+import * as Burnt from 'burnt'
+
+export const alert = () => {
+  Burnt.alert({
+    title: 'Congrats!', // required
+
+    preset: 'done',     // or "error", "success"
+
+    message: '',        // optional
+
+    // optional
+    layout: {
+      iconSize: {
+        height: 24,
+        width: 24
+      },
+      margins: {
+        top: 10
+      },
+      spaceBetweenIconAndTitle: 8
+    }
+  })
+}
+```
+
+### `dismissAllAlerts()`
+
+Does what you think it does! In the future, I'll allow async spinners for promises, and it'll be useful then.
 
 ## Thanks
 
