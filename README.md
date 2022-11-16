@@ -1,6 +1,6 @@
 # 🍞 burnt
 
-Cross-platform toasts, powered by native elements.
+Cross-platform toasts for React Native, powered by native elements.
 
 ## Context
 
