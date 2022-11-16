@@ -82,6 +82,8 @@ yarn
 
 https://user-images.githubusercontent.com/13172299/202275423-300671e5-3918-4d5d-acae-0602160de252.mp4
 
+_The API changed since recording this video. It now uses object syntax._
+
 `toast(options): Promise<void>`
 
 ```tsx
@@ -103,6 +105,8 @@ Burnt.toast({
 ### `alert`
 
 https://user-images.githubusercontent.com/13172299/202275324-4f6cb5f5-a103-49b5-993f-2030fc836edb.mp4
+
+_The API changed since recording this video. It now uses object syntax._
 
 `alert(options): Promise<void>`
 
