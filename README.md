@@ -63,14 +63,23 @@ yarn add burnt
 Burnt likely requires Expo SDK 47+.
 
 ```sh
-expo install burnt
+expo install burnt expo-build-properties
 ```
 
-Add the config plugin to your `app.json`/`app.config.js`:
+Add the `expo-build-properties` plugin to your `app.json`/`app.config.js`, setting the deployment target to `13.0` (or higher):
 
 ```json
 {
-  "plugins": ["burnt"]
+  "plugins": [
+    [
+      'expo-build-properties',
+      {
+        ios: {
+          deploymentTarget: '13.0',
+        },
+      },
+    ],
+  ]
 }
 ```
 
