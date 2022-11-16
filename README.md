@@ -60,6 +60,8 @@ yarn add burnt
 
 ### Expo
 
+Burnt likely requires Expo SDK 47+.
+
 ```sh
 expo install burnt
 ```
