@@ -16,7 +16,7 @@ This is a library with a `toast` and `alert` method for showing ephemeral UI.
 
 Currently, it only works on iOS, by wrapping [`SPIndicator`](https://github.com/ivanvorobei/SPIndicator) and [`SPAlert`](https://github.com/ivanvorobei/SPAlert).
 
-Burnt works with the new architecture (+ old) and is built on top of JSI, thanks to Expo's new module system.
+Burnt works with both the old & new architectures. It's built on top of JSI, thanks to Expo's new module system.
 
 ## Features
 
