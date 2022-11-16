@@ -1,36 +1,45 @@
-import {
-  NativeModulesProxy,
-  EventEmitter,
-  Subscription,
-} from "expo-modules-core";
-
 // Import the native module. On web, it will be resolved to Burnt.web.ts
 // and on native platforms to Burnt.ts
-import BurntModule from "./BurntModule";
+import BurntModule from "./BurntModule.ios";
 
-export function alert(options: {
+type AlertOptions = {
   title: string;
   message: string;
-  preset: "heart" | "done" | "error" | "spinner";
-}) {
+  preset: "heart" | "done" | "error";
+  /**
+   * Duration in seconds.
+   */
+  duration?: number;
+  /**
+   * Defaults to `true`.
+   */
+  shouldDismissByTap?: boolean;
+  // | "spinner"; this is too dangerous for now since we haven't added dismiss
+};
+
+export function alert({ preset = "done", ...options }: AlertOptions) {
   return BurntModule.alertAsync({ ...options });
 }
 
-// Get the native constant value.
-export const PI = BurntModule.PI;
+type ToastOptions = {
+  title: string;
+  message: string;
+  preset: "done" | "error"; // TODO custom option
+  /**
+   * Duration in seconds.
+   */
+  duration?: number;
+  haptic?: "success" | "warning" | "error" | "none";
+  /**
+   * Defaults to `true`.
+   */
+  shouldDismissByDrag?: boolean;
+};
 
-export function hello(): string {
-  return BurntModule.hello();
+export function toast(options: ToastOptions) {
+  return BurntModule.toastAsync(options);
 }
 
-export async function setValueAsync(value: string) {
-  return await BurntModule.setValueAsync(value);
-}
-
-export function toast(title: string, message: string) {
-  return BurntModule.toastAsync(title, message);
-}
-
-export function toastAsync(title: string, message: string) {
-  return BurntModule.toastAsync(title, message, null);
+export function dismissAllAlerts() {
+  return BurntModule.dismissAllAlertsAsync();
 }

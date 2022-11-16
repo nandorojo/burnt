@@ -22,6 +22,27 @@ enum AlertPreset: String, Enumerable {
   }
 }
 
+
+enum AlertHaptic: String, Enumerable {
+  case success
+  case warning
+  case error
+  case none
+
+  func toSPAlertHaptic() -> SPAlertHaptic {
+    switch self {
+    case .success:
+      return .success
+    case .warning:
+      return .warning
+    case .error:
+      return .error
+    case .none:
+      return .none
+    }
+  }
+}
+
 struct AlertOptions: Record {
   @Field
   var title: String = ""
@@ -34,8 +55,43 @@ struct AlertOptions: Record {
 
   @Field
   var duration: TimeInterval?
+
+  @Field
+  var shouldDismissByTap: Bool = true
+
+  @Field
+  var haptic: AlertHaptic = .none
 }
 
+struct ToastIconSize: Record {
+  @Field
+  var width: Int
+
+  @Field
+  var height: Int
+}
+
+struct ToastMargins: Record {
+  @Field
+  var top: CGFloat?
+
+  @Field
+  var left: CGFloat?
+
+  @Field
+  var bottom: CGFloat?
+
+  @Field
+  var right: CGFloat?
+}
+
+struct ToastLayout: Record {
+  @Field
+  var iconSize: ToastIconSize?
+
+  @Field
+  var margins: ToastMargins?
+}
 
 struct ToastOptions: Record {
   @Field
@@ -49,13 +105,42 @@ struct ToastOptions: Record {
 
   @Field
   var duration: TimeInterval?
+
+  @Field
+  var layout: ToastLayout?
+
+  @Field
+  var shouldDismissByDrag: Bool = true
+
+  @Field
+  var haptic: ToastHaptic = .none
 }
 
-enum ToastPreset {
+enum ToastHaptic: String, Enumerable {
+  case success
+  case warning
+  case error
+  case none
+
+  func toSPIndicatorHaptic() -> SPIndicatorHaptic {
+    switch self {
+    case .success:
+      return .success
+    case .warning:
+      return .warning
+    case .error:
+      return .error
+    case .none:
+      return .none
+    }
+  }
+}
+
+enum ToastPreset: String, Enumerable {
   case done
   case error
 
-  func toSPIndicatorPreset() -> SPIndicatorPreset {
+  func toSPIndicatorPreset() -> SPIndicatorIconPreset {
     switch self {
     case .done:
       return .done
@@ -76,22 +161,41 @@ public class BurntModule: Module {
     Name("Burnt")
 
     AsyncFunction("toastAsync") { (options: ToastOptions) -> Void in
-      SPIndicator.present(title: options.title, message: options.message, preset: options.preset.toSPIndicatorPreset())
-    }.runOnQueue(.main) 
-
-    AsyncFunction("alertAsync")  { (options: AlertOptions) -> Void in
-      let view = SPAlertView(
-        title: options.title, message: options.message, preset: options.preset.toSPAlertIconPreset())
+      let view = SPIndicatorView(title: options.title, message: options.message, preset: options.preset.toSPIndicatorPreset())
 
       if let duration = options.duration {
         view.duration = duration
       }
 
-      view.present()
+      if let layout = options.layout {
+        if let icon = layout.iconSize {
+          view.layout.iconSize = .init(width: icon.width, height: icon.height)
+        }
+      }
+
+      view.dismissByDrag = options.shouldDismissByDrag
+
+      view.present(haptic: options.haptic.toSPIndicatorHaptic())
     }.runOnQueue(.main) 
+
+    AsyncFunction("alertAsync")  { (options: AlertOptions) -> Void in
+      let view = SPAlertView(
+        title: options.title, 
+        message: options.message, 
+        preset: options.preset.toSPAlertIconPreset())
+
+        if let duration = options.duration {
+          view.duration = duration
+        }
+
+        view.dismissByTap = options.shouldDismissByTap
+
+        view.present(
+          haptic: options.haptic.toSPAlertHaptic())
+     }.runOnQueue(.main) 
 
     AsyncFunction("dismissAllAlertsAsync") {
       return SPAlert.dismiss()
-    }
+    }.runOnQueue(.main) 
   }
 }
