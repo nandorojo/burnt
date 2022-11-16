@@ -2,7 +2,7 @@ import ExpoModulesCore
 import SPIndicator
 import SPAlert
  
-enum AlertPreset: String, Enumerable {
+enum AlertPreset: String, EnumArgument {
   case done
   case error
   case heart
@@ -23,7 +23,7 @@ enum AlertPreset: String, Enumerable {
 }
 
 
-enum AlertHaptic: String, Enumerable {
+enum AlertHaptic: String, EnumArgument {
   case success
   case warning
   case error
@@ -116,7 +116,7 @@ struct ToastOptions: Record {
   var haptic: ToastHaptic = .none
 }
 
-enum ToastHaptic: String, Enumerable {
+enum ToastHaptic: String, EnumArgument {
   case success
   case warning
   case error
@@ -136,7 +136,7 @@ enum ToastHaptic: String, Enumerable {
   }
 }
 
-enum ToastPreset: String, Enumerable {
+enum ToastPreset: String, EnumArgument {
   case done
   case error
 
