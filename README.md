@@ -2,6 +2,15 @@
 
 Cross-platform toasts for React Native, powered by native elements.
 
+You can open a full-screen alert:
+
+https://user-images.githubusercontent.com/13172299/202275324-4f6cb5f5-a103-49b5-993f-2030fc836edb.mp4
+
+...or a toast (and pick the side):
+
+https://user-images.githubusercontent.com/13172299/202275423-300671e5-3918-4d5d-acae-0602160de252.mp4
+
+
 ## Context
 
 See this [Twitter thread](https://twitter.com/FernandoTheRojo/status/1592923529644625920).
