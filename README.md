@@ -1,35 +1,49 @@
-# burnt
+# 🍞 burnt
 
 Cross-platform toasts, powered by native elements.
 
-# API documentation
+## Context
 
-- [Documentation for the main branch](https://github.com/expo/expo/blob/main/docs/pages/versions/unversioned/sdk/burnt.md)
-- [Documentation for the latest stable release](https://docs.expo.dev/versions/latest/sdk/burnt/)
+See this [Twitter thread](https://twitter.com/FernandoTheRojo/status/1592923529644625920).
 
-# Installation in managed Expo projects
+## What
 
-For [managed](https://docs.expo.dev/versions/latest/introduction/managed-vs-bare/) Expo projects, please follow the installation instructions in the [API documentation for the latest stable release](#api-documentation). If you follow the link and there is no documentation available then this library is not yet usable within managed projects &mdash; it is likely to be included in an upcoming Expo SDK release.
+This is a library with a `toast` and `alert` method for showing ephemeral UI. 
 
-# Installation in bare React Native projects
+Currently, it only works on iOS, by wrapping [`SPIndicator`](https://github.com/ivanvorobei/SPIndicator) and [`SPAlert`](https://github.com/ivanvorobei/SPAlert).
 
-For bare React Native projects, you must ensure that you have [installed and configured the `expo` package](https://docs.expo.dev/bare/installing-expo-modules/) before continuing.
+Burnt works with the new architecture (+ old) and is built on top of JSI, thanks to Expo's new module system.
 
-### Add the package to your npm dependencies
+## Installation
 
+```sh
+yarn add burnt
 ```
-npm install burnt
+
+### Expo
+
+```sh
+npx expo prebuild --clean
+npx expo run:ios
 ```
 
-### Configure for iOS
+### Plain React Native
 
-Run `npx pod-install` after installing the npm package.
+```sh
+pod install
+```
 
+### Solito
 
-### Configure for Android
+```sh
+cd applications/app
+yarn add burnt
+npx expo prebuild --clean
+npx expo run:ios
+cd ../..
+yarn
+```
 
+## Thanks
 
-
-# Contributing
-
-Contributions are very welcome! Please refer to guidelines described in the [contributing guide]( https://github.com/expo/expo#contributing).
+Expo Modules made this so easy to build, and all with Swift – no Objective C. It's my first time writing Swift, and it was truly a breeze.
