@@ -2,14 +2,9 @@
 
 Cross-platform toasts for React Native, powered by native elements.
 
-You can open a full-screen alert:
+https://user-images.githubusercontent.com/13172299/202289223-8a333223-3afa-49c4-a001-a70c76150ef0.mp4
 
-https://user-images.githubusercontent.com/13172299/202275324-4f6cb5f5-a103-49b5-993f-2030fc836edb.mp4
-
-...or a toast (and pick the side):
-
-https://user-images.githubusercontent.com/13172299/202275423-300671e5-3918-4d5d-acae-0602160de252.mp4
-
+ 
 
 ## Context
 
@@ -21,7 +16,7 @@ This is a library with a `toast` and `alert` method for showing ephemeral UI.
 
 Currently, it only works on iOS, by wrapping [`SPIndicator`](https://github.com/ivanvorobei/SPIndicator) and [`SPAlert`](https://github.com/ivanvorobei/SPAlert).
 
-Burnt works with the new architecture (+ old) and is built on top of JSI, thanks to Expo's new module system.
+Burnt works with both the old & new architectures. It's built on top of JSI, thanks to Expo's new module system.
 
 ## Features
 
@@ -85,7 +80,11 @@ yarn
 
 ### `toast`
 
-`alert(options): Promise<void>`
+https://user-images.githubusercontent.com/13172299/202275423-300671e5-3918-4d5d-acae-0602160de252.mp4
+
+_The API changed since recording this video. It now uses object syntax._
+
+`toast(options): Promise<void>`
 
 ```tsx
 Burnt.toast({
@@ -95,11 +94,19 @@ Burnt.toast({
   
   message: '',        // optional
   
-  // ...TODO
+  haptic: 'none'      // or "success", "warning", "error"
+  
+  duration: 2         // duration in seconds
+  
+  shouldDismissByDrag: true
 })
 ```
 
 ### `alert`
+
+https://user-images.githubusercontent.com/13172299/202275324-4f6cb5f5-a103-49b5-993f-2030fc836edb.mp4
+
+_The API changed since recording this video. It now uses object syntax._
 
 `alert(options): Promise<void>`
 
@@ -110,9 +117,11 @@ export const alert = () => {
   Burnt.alert({
     title: 'Congrats!', // required
 
-    preset: 'done',     // or "error", "success"
+    preset: 'done',     // or "error", "heart"
 
     message: '',        // optional
+    
+    duration: 2,        // duration in seconds
 
     // optional
     layout: {
@@ -120,10 +129,8 @@ export const alert = () => {
         height: 24,
         width: 24
       },
-      margins: {
-        top: 10
-      },
-      spaceBetweenIconAndTitle: 8
+      
+      // TODO: custom SF Symbols...
     }
   })
 }
@@ -144,5 +151,7 @@ npx expo run:ios # do this again whenever you change native code
 You can edit the iOS files in `ios/`, and then update the JS accordingly in `src`.
 
 ## Thanks
+
+Special thanks to [Tomasz Sapeta](https://twitter.com/tsapeta) for offering help along the way.
 
 Expo Modules made this so easy to build, and all with Swift – no Objective C. It's my first time writing Swift, and it was truly a breeze.
