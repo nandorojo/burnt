@@ -60,7 +60,7 @@ yarn add burnt
 
 ### Expo
 
-Burnt likely requires Expo SDK 47+.
+Burnt likely requires Expo SDK 46+.
 
 ```sh
 expo install burnt expo-build-properties
