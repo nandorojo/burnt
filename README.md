@@ -85,6 +85,8 @@ yarn
 
 ### `toast`
 
+`alert(options): Promise<void>`
+
 ```tsx
 Burnt.toast({
   title: 'Congrats!', // required
