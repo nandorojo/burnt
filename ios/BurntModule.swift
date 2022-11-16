@@ -167,10 +167,8 @@ public class BurntModule: Module {
         view.duration = duration
       }
 
-      if let layout = options.layout {
-        if let icon = layout.iconSize {
-          view.layout.iconSize = .init(width: icon.width, height: icon.height)
-        }
+      if let icon = options.layout?.iconSize {
+        view.layout.iconSize = .init(width: icon.width, height: icon.height)
       }
 
       view.dismissByDrag = options.shouldDismissByDrag
