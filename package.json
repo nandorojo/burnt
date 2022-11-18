@@ -1,6 +1,6 @@
 {
   "name": "burnt",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Cross-platform toasts, powered by native elements.",
   "main": "build/index.js",
   "types": "build/index.d.ts",
