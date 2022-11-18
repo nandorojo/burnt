@@ -27,7 +27,7 @@ thanks to Expo's new module system.
 - Animated icons
 - iOS App Store-like `alert` popups
 - Overlays on top of native iOS modals, unlike JS-based solutions
-  [(video)](<[url](https://www.loom.com/share/087dc54194b540999587372dcadf767d)>).
+  (video)[https://twitter.com/FernandoTheRojo/status/1593632122069291008].
 
 ## Usage
 
@@ -35,7 +35,9 @@ thanks to Expo's new module system.
 import * as Burnt from "burnt";
 
 Burnt.toast({
-  title: "That's hot!",
+  title: "Burnt installed.",
+  preset: "done",
+  message: "See your downloads.",
 });
 ```
 
