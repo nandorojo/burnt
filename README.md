@@ -26,7 +26,8 @@ thanks to Expo's new module system.
   rather than using React state with JS-based UI.
 - Animated icons
 - iOS App Store-like `alert` popups
-- Overlays on top of native iOS modals, unlike JS-based solutions [(video)]([url](https://www.loom.com/share/087dc54194b540999587372dcadf767d)).
+- Overlays on top of native iOS modals, unlike JS-based solutions
+  [(video)](<[url](https://www.loom.com/share/087dc54194b540999587372dcadf767d)>).
 
 ## Usage
 
@@ -67,21 +68,22 @@ Burnt likely requires Expo SDK 46+.
 expo install burnt expo-build-properties
 ```
 
-Add the `expo-build-properties` plugin to your `app.json`/`app.config.js`, setting the deployment target to `13.0` (or higher):
+Add the `expo-build-properties` plugin to your `app.json`/`app.config.js`,
+setting the deployment target to `13.0` (or higher):
 
 ```js
 export default {
   plugins: [
     [
-      'expo-build-properties',
+      "expo-build-properties",
       {
         ios: {
-          deploymentTarget: '13.0',
+          deploymentTarget: "13.0",
         },
-      }
-    ]
-  ]
-}
+      },
+    ],
+  ],
+};
 ```
 
 Then, you'll need to rebuild your dev client. Burnt will not work in Expo Go.
@@ -89,7 +91,7 @@ Then, you'll need to rebuild your dev client. Burnt will not work in Expo Go.
 ```sh
 npx expo prebuild --clean
 npx expo run:ios
-``` 
+```
 
 The config plugin ensures that your iOS app has at least iOS 13 as a deployment
 target, which is required for Burnt (as well as Expo SDK 47+).
@@ -104,12 +106,14 @@ pod install
 
 ```sh
 cd applications/app
-yarn add burnt
+expo install burnt expo-build-properties
 npx expo prebuild --clean
 npx expo run:ios
 cd ../..
 yarn
 ```
+
+Be sure to follow the [expo](#expo) instructions too.
 
 ## API
 
