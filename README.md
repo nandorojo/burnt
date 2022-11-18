@@ -26,7 +26,7 @@ thanks to Expo's new module system.
   rather than using React state with JS-based UI.
 - Animated icons
 - iOS App Store-like `alert` popups
-- Overlays on top of native iOS modals, unlike JS-based solutions [(video)]([url](https://www.loom.com/share/087dc54194b540999587372dcadf767d)).
+- Overlays on top of native iOS modals, unlike JS-based solutions (video)[https://twitter.com/FernandoTheRojo/status/1593632122069291008].
 
 ## Usage
 
