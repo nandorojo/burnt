@@ -34,7 +34,9 @@ thanks to Expo's new module system.
 import * as Burnt from "burnt";
 
 Burnt.toast({
-  title: "That's hot!",
+  title: "Burnt installed.",
+  preset: "done",
+  message: "See your downloads."
 });
 ```
 
