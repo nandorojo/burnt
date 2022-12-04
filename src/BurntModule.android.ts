@@ -3,9 +3,6 @@ import { ToastAndroid } from "react-native";
 
 export default {
   alertAsync({ message, title, preset, duration }: AlertOptions) {
-    console.warn(
-      "[burnt] Burnt.alert() is not implemented on this Android. Falling back to toast()."
-    );
     this.toastAsync({
       message,
       title,
