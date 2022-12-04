@@ -26,4 +26,4 @@ export default {
       );
     }
   },
-} as any;
+};
