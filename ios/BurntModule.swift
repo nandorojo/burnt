@@ -184,7 +184,7 @@ public class BurntModule: Module {
 
       view.dismissByDrag = options.shouldDismissByDrag
 
-      view.from = options.from;
+      view.presentSide = options.from;
 
       view.present(haptic: options.haptic.toSPIndicatorHaptic())
     }.runOnQueue(.main) 
