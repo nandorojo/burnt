@@ -54,5 +54,5 @@ export type ToastOptions = {
    * Defaults to `true`.
    */
   shouldDismissByDrag?: boolean;
-  from: "top" | "bottom";
+  from?: "top" | "bottom";
 };
