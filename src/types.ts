@@ -54,5 +54,9 @@ export type ToastOptions = {
    * Defaults to `true`.
    */
   shouldDismissByDrag?: boolean;
+  /**
+   * Change the presentation side.
+   * @platform ios
+   */
   from?: "top" | "bottom";
 };
