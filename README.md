@@ -138,7 +138,9 @@ Burnt.toast({
 
   duration: 2         // duration in seconds
 
-  shouldDismissByDrag: true
+  shouldDismissByDrag: true,
+
+  from: 'bottom', // ios only, "top" or "bottom"
 })
 ```
 
