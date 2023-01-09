@@ -10,11 +10,11 @@ export default {
       duration,
     });
   },
-  toastAsync({ title, duration = 5 }: ToastOptions) {
+  toastAsync({ title, duration = 5, from = 'bottom' }: ToastOptions) {
     ToastAndroid.showWithGravityAndOffset(
       title,
       duration * 1000,
-      ToastAndroid.BOTTOM,
+      from === 'bottom' ? ToastAndroid.BOTTOM : ToastAndroid.TOP,
       25,
       50
     );
