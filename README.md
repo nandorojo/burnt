@@ -139,7 +139,17 @@ Burnt.toast({
 
   duration: 2         // duration in seconds
 
-  shouldDismissByDrag: true
+  shouldDismissByDrag: true,
+
+  // optionally customize layout
+  layout: {
+    iconSize: {
+      height: 24,
+      width: 24,
+    },
+
+    // TODO: custom SF Symbols...
+  },
 })
 ```
 
@@ -164,7 +174,7 @@ export const alert = () => {
 
     duration: 2, // duration in seconds
 
-    // optional
+    // optionally customize layout
     layout: {
       iconSize: {
         height: 24,
