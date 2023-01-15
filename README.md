@@ -13,9 +13,10 @@ See this
 
 This is a library with a `toast` and `alert` method for showing ephemeral UI.
 
-Currently, it only works on iOS, by wrapping
-[`SPIndicator`](https://github.com/ivanvorobei/SPIndicator) and
+On iOS, it wraps [`SPIndicator`](https://github.com/ivanvorobei/SPIndicator) and
 [`SPAlert`](https://github.com/ivanvorobei/SPAlert).
+
+On Android, it wraps `ToastAndroid` from `react-native`. `Burnt.alert()` falls back to `Burnt.toast()` on Android.
 
 Burnt works with both the old & new architectures. It's built on top of JSI,
 thanks to Expo's new module system.
@@ -46,15 +47,13 @@ You can also `Burnt.alert()` and `Burnt.dismissAllAlerts()`.
 ## TODO
 
 - [x] iOS support
-- [ ] Android support (I probably won't build this myself, but maybe you could
-      add it!)
+- [x] Android support
 - [ ] Web support (could be cool to use Radix UI...but maybe I'll leave that
       part up to Zeego)
 - [ ] Custom iOS icons
 
-Chances are, I'll keep this lib to iOS-only (and maybe Android), and then
-another library can consume it to build a broader API out on the JS side, such
-as [Zeego](https://zeego.dev).
+Chances are, I'll keep this lib to iOS & Android only, and then
+another library can consume it to build a broader API out on the JS side with Web support, such as [Zeego](https://zeego.dev).
 
 ## Installation
 
