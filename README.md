@@ -16,7 +16,8 @@ This is a library with a `toast` and `alert` method for showing ephemeral UI.
 On iOS, it wraps [`SPIndicator`](https://github.com/ivanvorobei/SPIndicator) and
 [`SPAlert`](https://github.com/ivanvorobei/SPAlert).
 
-On Android, it wraps `ToastAndroid` from `react-native`. `Burnt.alert()` falls back to `Burnt.toast()` on Android.
+On Android, it wraps `ToastAndroid` from `react-native`. `Burnt.alert()` falls
+back to `Burnt.toast()` on Android.
 
 Burnt works with both the old & new architectures. It's built on top of JSI,
 thanks to Expo's new module system.
@@ -52,8 +53,9 @@ You can also `Burnt.alert()` and `Burnt.dismissAllAlerts()`.
       part up to Zeego)
 - [ ] Custom iOS icons
 
-Chances are, I'll keep this lib to iOS & Android only, and then
-another library can consume it to build a broader API out on the JS side with Web support, such as [Zeego](https://zeego.dev).
+Chances are, I'll keep this lib to iOS & Android only, and then another library
+can consume it to build a broader API out on the JS side with Web support, such
+as [Zeego](https://zeego.dev).
 
 ## Installation
 
@@ -141,6 +143,16 @@ Burnt.toast({
   shouldDismissByDrag: true,
 
   from: 'bottom', // ios only, "top" or "bottom"
+
+  // optionally customize layout
+  layout: {
+    iconSize: {
+      height: 24,
+      width: 24,
+    },
+
+    // TODO: custom SF Symbols...
+  },
 })
 ```
 
@@ -165,13 +177,12 @@ export const alert = () => {
 
     duration: 2, // duration in seconds
 
-    // optional
+    // optionally customize layout
     layout: {
       iconSize: {
         height: 24,
         width: 24,
       },
-
       // TODO: custom SF Symbols...
     },
   });

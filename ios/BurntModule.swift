@@ -43,6 +43,11 @@ enum AlertHaptic: String, EnumArgument {
   }
 }
 
+struct AlertLayout: Record {
+  @Field
+  var iconSize: IconSize?
+}
+
 struct AlertOptions: Record {
   @Field
   var title: String = ""
@@ -61,9 +66,12 @@ struct AlertOptions: Record {
 
   @Field
   var haptic: AlertHaptic = .none
+
+  @Field
+  var layout: AlertLayout?
 }
 
-struct ToastIconSize: Record {
+struct IconSize: Record {
   @Field
   var width: Int
 
@@ -87,7 +95,7 @@ struct ToastMargins: Record {
 
 struct ToastLayout: Record {
   @Field
-  var iconSize: ToastIconSize?
+  var iconSize: IconSize?
 
   @Field
   var margins: ToastMargins?
@@ -200,6 +208,10 @@ public class BurntModule: Module {
         }
 
         view.dismissByTap = options.shouldDismissByTap
+
+        if let icon = options.layout?.iconSize {
+          view.layout.iconSize = .init(width: icon.width, height: icon.height)
+        }
 
         view.present(
           haptic: options.haptic.toSPAlertHaptic())

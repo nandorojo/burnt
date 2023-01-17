@@ -5,6 +5,7 @@ export type AlertOptions = {
    * Defaults to `true`.
    */
   shouldDismissByTap?: boolean;
+  layout?: Layout;
 } & (
   | {
       preset: "heart" | "done" | "error";
@@ -41,6 +42,13 @@ export type AlertOptions = {
     }
 );
 
+type Layout = {
+  iconSize?: {
+    width: number;
+    height: number;
+  };
+};
+
 export type ToastOptions = {
   title: string;
   message: string;
@@ -59,4 +67,5 @@ export type ToastOptions = {
    * @platform ios
    */
   from?: "top" | "bottom";
+  layout?: Layout;
 };
