@@ -122,6 +122,9 @@ struct ToastOptions: Record {
 
   @Field
   var haptic: ToastHaptic = .none
+
+  @Field
+  var from: ToastPresentSide = .top
 }
 
 enum ToastHaptic: String, EnumArgument {
@@ -158,6 +161,20 @@ enum ToastPreset: String, EnumArgument {
   }
 }
 
+enum ToastPresentSide: String, EnumArgument {
+  case top
+  case bottom
+
+  func toSPIndicatorPresentSide() -> SPIndicatorPresentSide {
+    switch self {
+    case .top:
+      return .top
+    case .bottom:
+      return .bottom
+    }
+  }
+}
+
 public class BurntModule: Module {
   public func definition() -> ModuleDefinition {
     Name("Burnt")
@@ -174,6 +191,8 @@ public class BurntModule: Module {
       }
 
       view.dismissByDrag = options.shouldDismissByDrag
+
+      view.presentSide = options.from.toSPIndicatorPresentSide();
 
       view.present(haptic: options.haptic.toSPIndicatorHaptic())
     }.runOnQueue(.main) 
