@@ -79,7 +79,7 @@ export type BaseToastOptions = {
   /**
    * Defaults to `done`.
    */
-  preset?: "done" | "error" | "none"; // TODO custom option
+  preset?: "done" | "error" | "none";
   /**
    * Duration in seconds.
    */
@@ -101,11 +101,7 @@ export type CustomToastOptions = Omit<BaseToastOptions, "preset"> & {
   /**
    * Defaults to `done`.
    */
-  preset?: "custom"; // TODO custom option
-  /**
-   * The name of an iOS-only SF Symbol. For a full list, see https://developer.apple.com/sf-symbols/.
-   * @platform ios
-   */
+  preset?: "custom";
   icon: Icon
 };
 
