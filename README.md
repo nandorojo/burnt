@@ -51,7 +51,7 @@ You can also `Burnt.alert()` and `Burnt.dismissAllAlerts()`.
 - [x] Android support
 - [ ] Web support (could be cool to use Radix UI...but maybe I'll leave that
       part up to Zeego)
-- [ ] Custom iOS icons
+- [x] Custom iOS icons
 
 Chances are, I'll keep this lib to iOS & Android only, and then another library
 can consume it to build a broader API out on the JS side with Web support, such
