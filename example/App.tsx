@@ -64,8 +64,12 @@ export default function App() {
           Burnt.alert({
             title: "Verified account",
             preset: "custom",
-            iosIconName: "checkmark.seal",
-            iconColor: "#1D9BF0",
+            icon: {
+              ios: {
+                name: 'checkmark.seal',
+                color: '#1D9BF0'
+              }
+            }
           });
         }}
       >
@@ -120,8 +124,12 @@ export default function App() {
           Burnt.toast({
             title: "This is a large text and custom icon toast!!!",
             preset: "custom",
-            iosIconName: "sparkle",
-            iconColor: "#F7A51D",
+            icon: {
+              ios: {
+                name: 'sparkle',
+                color: '#F7A51D'
+              }
+            }
           });
         }}
       >
