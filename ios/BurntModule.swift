@@ -2,13 +2,14 @@ import ExpoModulesCore
 import SPIndicator
 import SPAlert
  
-enum AlertPreset: String, EnumArgument {
+enum AlertPreset: String, Enumerable {
   case done
   case error
   case heart
   case spinner
+  case custom
 
-  func toSPAlertIconPreset() -> SPAlertIconPreset {
+  func toSPAlertIconPreset(_ options: AlertOptions?) -> SPAlertIconPreset {
     switch self {
     case .done:
       return .done
@@ -18,12 +19,15 @@ enum AlertPreset: String, EnumArgument {
       return .heart
     case .spinner:
       return .spinner
+    case .custom:
+      return .custom(UIImage.init( systemName: options?.iosIconName ?? "swift")!.withTintColor(options?.iconColor ?? .systemBlue, renderingMode: .alwaysOriginal))
+        
     }
   }
 }
 
 
-enum AlertHaptic: String, EnumArgument {
+enum AlertHaptic: String, Enumerable {
   case success
   case warning
   case error
@@ -69,6 +73,12 @@ struct AlertOptions: Record {
 
   @Field
   var layout: AlertLayout?
+  
+  @Field
+  var iosIconName: String? = nil
+  
+  @Field
+  var iconColor: UIColor = .systemGray
 }
 
 struct IconSize: Record {
@@ -125,9 +135,15 @@ struct ToastOptions: Record {
 
   @Field
   var from: ToastPresentSide = .top
+  
+  @Field
+  var iosIconName: String? = nil
+  
+  @Field
+  var iconColor: UIColor = .systemBlue
 }
 
-enum ToastHaptic: String, EnumArgument {
+enum ToastHaptic: String, Enumerable {
   case success
   case warning
   case error
@@ -147,21 +163,28 @@ enum ToastHaptic: String, EnumArgument {
   }
 }
 
-enum ToastPreset: String, EnumArgument {
+enum ToastPreset: String, Enumerable {
   case done
   case error
-
-  func toSPIndicatorPreset() -> SPIndicatorIconPreset {
+  case none
+  case custom
+  
+  func toSPIndicatorPreset(_ options: ToastOptions?) -> SPIndicatorIconPreset? {
     switch self {
     case .done:
       return .done
     case .error:
       return .error
+    case .custom:
+        return .custom(UIImage.init( systemName: options?.iosIconName ?? "swift")!.withTintColor(options?.iconColor ?? .systemBlue, renderingMode: .alwaysOriginal))
+    case .none:
+      return .none
+        
     }
   }
 }
 
-enum ToastPresentSide: String, EnumArgument {
+enum ToastPresentSide: String, Enumerable {
   case top
   case bottom
 
@@ -180,7 +203,15 @@ public class BurntModule: Module {
     Name("Burnt")
 
     AsyncFunction("toastAsync") { (options: ToastOptions) -> Void in
-      let view = SPIndicatorView(title: options.title, message: options.message, preset: options.preset.toSPIndicatorPreset())
+      let view : SPIndicatorView
+      if(options.preset == .none){
+        view = SPIndicatorView(title: options.title, message: options.message)
+      } else if(options.preset == .custom){
+        view = SPIndicatorView(title: options.title, message: options.message, preset: options.preset.toSPIndicatorPreset(options)!)
+      }
+      else{
+        view = SPIndicatorView(title: options.title, message: options.message, preset: options.preset.toSPIndicatorPreset(nil)!)
+      }
 
       if let duration = options.duration {
         view.duration = duration
@@ -189,7 +220,7 @@ public class BurntModule: Module {
       if let icon = options.layout?.iconSize {
         view.layout.iconSize = .init(width: icon.width, height: icon.height)
       }
-
+      
       view.dismissByDrag = options.shouldDismissByDrag
 
       view.presentSide = options.from.toSPIndicatorPresentSide();
@@ -198,11 +229,21 @@ public class BurntModule: Module {
     }.runOnQueue(.main) 
 
     AsyncFunction("alertAsync")  { (options: AlertOptions) -> Void in
-      let view = SPAlertView(
-        title: options.title, 
-        message: options.message, 
-        preset: options.preset.toSPAlertIconPreset())
+      let view : SPAlertView
+      if(options.preset == .custom){
+        view = SPAlertView(
+          title: options.title,
+          message: options.message,
+          preset: options.preset.toSPAlertIconPreset(options))
+      }
+      else{
+        view = SPAlertView(
+          title: options.title,
+          message: options.message,
+          preset: options.preset.toSPAlertIconPreset(nil))
+      }
 
+      
         if let duration = options.duration {
           view.duration = duration
         }

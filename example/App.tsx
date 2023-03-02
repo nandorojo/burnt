@@ -58,6 +58,21 @@ export default function App() {
       </Text>
 
       <View style={{ height: 16 }} />
+      <Text
+        style={[styles.text, styles.yellow]}
+        onPress={async () => {
+          Burnt.alert({
+            title: "Verified account",
+            preset: "custom",
+            iosIconName: "checkmark.seal",
+            iconColor: "#1D9BF0",
+          });
+        }}
+      >
+        Custom Icon Alert
+      </Text>
+
+      <View style={{ height: 16 }} />
 
       <Text
         style={[styles.text, styles.green]}
@@ -85,6 +100,32 @@ export default function App() {
         }}
       >
         Success Toast
+      </Text>
+      <View style={{ height: 16 }} />
+      <Text
+        style={[styles.text, styles.blue]}
+        onPress={async () => {
+          Burnt.toast({
+            title: "This is a large text and without icon toast!!!",
+            preset: "none",
+          });
+        }}
+      >
+        Without Icon Toast
+      </Text>
+      <View style={{ height: 16 }} />
+      <Text
+        style={[styles.text, styles.blue]}
+        onPress={async () => {
+          Burnt.toast({
+            title: "This is a large text and custom icon toast!!!",
+            preset: "custom",
+            iosIconName: "sparkle",
+            iconColor: "#F7A51D",
+          });
+        }}
+      >
+        Custom Icon Toast
       </Text>
     </>
   );
