@@ -1,3 +1,17 @@
+export type IconParams = {
+  ios: {
+    /**
+     * The name of an iOS-only SF Symbol. For a full list, see https://developer.apple.com/sf-symbols/.
+     * @platform ios
+     */
+    name: string;
+    /**
+     * Change the custom icon color, default is system blue.
+     * @platform ios
+     */
+    color: string;
+  };
+};
 export type AlertOptions = {
   title: string;
   message?: string;
@@ -45,16 +59,8 @@ export type AlertOptions = {
     }
   | {
       preset: "custom";
-      /**
-       * The name of an iOS-only SF Symbol. For a full list, see https://developer.apple.com/sf-symbols/.
-       * @platform ios
-       */
-      iosIconName?: string;
-      /**
-       * Change the custom icon color, default is system blue.
-       * @platform ios
-       */
-      iconColor?: string;
+
+      icon: IconParams;
       /**
        * Duration in seconds.
        */
@@ -98,16 +104,7 @@ export type CustomToastOptions = Omit<BaseToastOptions, "preset"> & {
    * Defaults to `done`.
    */
   preset?: "custom"; // TODO custom option
-  /**
-   * The name of an iOS-only SF Symbol. For a full list, see https://developer.apple.com/sf-symbols/.
-   * @platform ios
-   */
-  iosIconName?: string;
-  /**
-   * Change the custom icon color, default is system blue.
-   * @platform ios
-   */
-  iconColor?: string;
+  icon: IconParams;
 };
 
 export type ToastOptions = BaseToastOptions | CustomToastOptions;
