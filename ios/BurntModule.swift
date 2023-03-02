@@ -20,7 +20,7 @@ enum AlertPreset: String, Enumerable {
     case .spinner:
       return .spinner
     case .custom:
-      return .custom(UIImage.init( systemName: options?.iosIconName ?? "swift")!.withTintColor(options?.iconColor ?? .systemBlue, renderingMode: .alwaysOriginal))
+      return .custom(UIImage.init( systemName: options?.iconName ?? "swift")!.withTintColor(options?.iconColor ?? .systemBlue, renderingMode: .alwaysOriginal))
         
     }
   }
@@ -75,7 +75,7 @@ struct AlertOptions: Record {
   var layout: AlertLayout?
   
   @Field
-  var iosIconName: String? = nil
+  var iconName: String? = nil
   
   @Field
   var iconColor: UIColor = .systemGray
