@@ -137,7 +137,7 @@ struct ToastOptions: Record {
   var from: ToastPresentSide = .top
   
   @Field
-  var iosIconName: String? = nil
+  var iconName: String? = nil
   
   @Field
   var iconColor: UIColor = .systemBlue
@@ -176,7 +176,7 @@ enum ToastPreset: String, Enumerable {
     case .error:
       return .error
     case .custom:
-        return .custom(UIImage.init( systemName: options?.iosIconName ?? "swift")!.withTintColor(options?.iconColor ?? .systemBlue, renderingMode: .alwaysOriginal))
+        return .custom(UIImage.init( systemName: options?.iconName ?? "swift")!.withTintColor(options?.iconColor ?? .systemBlue, renderingMode: .alwaysOriginal))
     case .none:
       return .none
         
