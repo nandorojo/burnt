@@ -2,6 +2,7 @@ import ExpoModulesCore
 import SPIndicator
 import SPAlert
 
+
 enum AlertPreset: String, Enumerable {
   case done
   case error
@@ -9,7 +10,7 @@ enum AlertPreset: String, Enumerable {
   case spinner
   case custom
   
-  func toSPAlertIconPreset(_ options: AlertOptions?) -> SPAlertIconPreset {
+  func toSPAlertIconPreset(_ options: AlertOptions?) throws -> SPAlertIconPreset {
     switch self {
       case .done:
         return .done
@@ -20,8 +21,10 @@ enum AlertPreset: String, Enumerable {
       case .spinner:
         return .spinner
       case .custom:
-        return .custom(UIImage.init( systemName: options?.icon?.name ?? "swift")!.withTintColor(options?.icon?.color ?? .systemBlue, renderingMode: .alwaysOriginal))
-        
+        guard let image = UIImage.init( systemName: options?.icon?.name ?? "swift") else {
+          throw BurntError.invalidSystemName
+        }
+        return .custom((image.withTintColor(options?.icon?.color ?? .systemBlue, renderingMode: .alwaysOriginal)))
     }
   }
 }
@@ -169,23 +172,28 @@ enum ToastHaptic: String, Enumerable {
     }
   }
 }
-
+enum BurntError: Error {
+  case invalidSystemName
+}
 enum ToastPreset: String, Enumerable {
   case done
   case error
   case none
   case custom
   
-  func toSPIndicatorPreset(_ options: ToastOptions?) -> SPIndicatorIconPreset? {
+  func toSPIndicatorPreset(_ options: ToastOptions?) throws -> SPIndicatorIconPreset? {
     switch self {
       case .done:
         return .done
       case .error:
         return .error
-      case .custom:
-        return .custom(UIImage.init( systemName: options?.icon?.name ?? "swift")!.withTintColor(options?.icon?.color ?? .systemBlue, renderingMode: .alwaysOriginal))
       case .none:
         return .none
+      case .custom:
+        guard let image = UIImage.init( systemName: options?.icon?.name ?? "swift") else {
+          throw BurntError.invalidSystemName
+        }
+        return .custom(image.withTintColor(options?.icon?.color ?? .systemBlue, renderingMode: .alwaysOriginal))
     }
   }
 }
@@ -209,7 +217,12 @@ public class BurntModule: Module {
     Name("Burnt")
     
     AsyncFunction("toastAsync") { (options: ToastOptions) -> Void in
-      let preset = options.preset.toSPIndicatorPreset(options)
+      var preset: SPIndicatorIconPreset?
+      do {
+        preset = try options.preset.toSPIndicatorPreset(options)
+      } catch {
+        log.error("Burnt Toast error: \(error)")
+      }
       let view = (preset != nil) ? SPIndicatorView(title: options.title, message: options.message, preset: preset ?? .done):  SPIndicatorView(title: options.title, message: options.message)
       
       if let duration = options.duration {
@@ -228,10 +241,17 @@ public class BurntModule: Module {
     }.runOnQueue(.main)
     
     AsyncFunction("alertAsync")  { (options: AlertOptions) -> Void in
+      var preset: SPAlertIconPreset?
+      do {
+        preset = try options.preset.toSPAlertIconPreset(options)
+      } catch {
+        log.error("Burnt Alert error: \(error)")
+      }
+      
       let view = SPAlertView(
         title: options.title,
         message: options.message,
-        preset: options.preset.toSPAlertIconPreset(options))
+        preset: preset ?? .done)
       
       if let duration = options.duration {
         view.duration = duration
