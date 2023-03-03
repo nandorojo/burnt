@@ -9,7 +9,7 @@ const getPlatfomIconProps = (params: IconParams) => {
     const color = params.ios?.color ? processColor(params.ios?.color) : null;
     return { ...params.ios, color };
   }
-  return {};
+  return null;
 };
 
 export function alert({ duration = 5, ...options }: AlertOptions) {

@@ -132,7 +132,7 @@ _The API changed since recording this video. It now uses object syntax._
 Burnt.toast({
   title: 'Congrats!', // required
 
-  preset: 'done',     // or "error", "custom"
+  preset: 'done',     // or "error", "none", "custom"
 
   message: '',        // optional
 
@@ -149,7 +149,7 @@ Burnt.toast({
     iconSize: {
       height: 24,
       width: 24,
-    },
+  },
   icon: {
     ios: {
       // SF Symbol. For a full list, see https://developer.apple.com/sf-symbols/.
