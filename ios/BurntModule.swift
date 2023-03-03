@@ -186,7 +186,6 @@ enum ToastPreset: String, Enumerable {
         return .custom(UIImage.init( systemName: options?.icon?.name ?? "swift")!.withTintColor(options?.icon?.color ?? .systemBlue, renderingMode: .alwaysOriginal))
       case .none:
         return .none
-        
     }
   }
 }
@@ -210,15 +209,8 @@ public class BurntModule: Module {
     Name("Burnt")
     
     AsyncFunction("toastAsync") { (options: ToastOptions) -> Void in
-      let view : SPIndicatorView
-      if(options.preset == .none){
-        view = SPIndicatorView(title: options.title, message: options.message)
-      } else if(options.preset == .custom){
-        view = SPIndicatorView(title: options.title, message: options.message, preset: options.preset.toSPIndicatorPreset(options)!)
-      }
-      else{
-        view = SPIndicatorView(title: options.title, message: options.message, preset: options.preset.toSPIndicatorPreset(nil)!)
-      }
+      let preset = options.preset.toSPIndicatorPreset(options)
+      let view = (preset != nil) ? SPIndicatorView(title: options.title, message: options.message, preset: preset ?? .done):  SPIndicatorView(title: options.title, message: options.message)
       
       if let duration = options.duration {
         view.duration = duration
@@ -236,20 +228,10 @@ public class BurntModule: Module {
     }.runOnQueue(.main)
     
     AsyncFunction("alertAsync")  { (options: AlertOptions) -> Void in
-      let view : SPAlertView
-      if(options.preset == .custom){
-        view = SPAlertView(
-          title: options.title,
-          message: options.message,
-          preset: options.preset.toSPAlertIconPreset(options))
-      }
-      else{
-        view = SPAlertView(
-          title: options.title,
-          message: options.message,
-          preset: options.preset.toSPAlertIconPreset(nil))
-      }
-      
+      let view = SPAlertView(
+        title: options.title,
+        message: options.message,
+        preset: options.preset.toSPAlertIconPreset(options))
       
       if let duration = options.duration {
         view.duration = duration
