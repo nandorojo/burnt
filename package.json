@@ -28,7 +28,9 @@
   "author": "Fernando Rojo <frojo@sas.upenn.edu> (https://github.com/nandorojo)",
   "license": "MIT",
   "homepage": "https://github.com/nandorojo/burnt#readme",
-  "dependencies": {},
+  "dependencies": {
+    "sf-symbols-typescript": "^1.0.0"
+  },
   "devDependencies": {
     "@types/react": "^18.0.25",
     "@types/react-native": "^0.70.6",

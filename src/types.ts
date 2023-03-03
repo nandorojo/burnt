@@ -1,10 +1,12 @@
+import type { SFSymbol } from "sf-symbols-typescript";
+
 export type IconParams = {
   ios: {
     /**
      * The name of an iOS-only SF Symbol. For a full list, see https://developer.apple.com/sf-symbols/.
      * @platform ios
      */
-    name: string;
+    name: SFSymbol;
     /**
      * Change the custom icon color, default is system blue.
      * @platform ios
