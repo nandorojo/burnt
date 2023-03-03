@@ -49,9 +49,9 @@ You can also `Burnt.alert()` and `Burnt.dismissAllAlerts()`.
 
 - [x] iOS support
 - [x] Android support
+- [x] Custom iOS icons
 - [ ] Web support (could be cool to use Radix UI...but maybe I'll leave that
       part up to Zeego)
-- [x] Custom iOS icons
 
 Chances are, I'll keep this lib to iOS & Android only, and then another library
 can consume it to build a broader API out on the JS side with Web support, such
@@ -132,7 +132,7 @@ _The API changed since recording this video. It now uses object syntax._
 Burnt.toast({
   title: 'Congrats!', // required
 
-  preset: 'done',     // or "error"
+  preset: 'done',     // or "error", "custom"
 
   message: '',        // optional
 
@@ -150,8 +150,13 @@ Burnt.toast({
       height: 24,
       width: 24,
     },
-
-    // TODO: custom SF Symbols...
+  icon: {
+    ios: {
+      // SF Symbol. For a full list, see https://developer.apple.com/sf-symbols/.
+      name: "checkmark.seal",
+      color: "#1D9BF0",
+    },
+  },
   },
 })
 ```
@@ -171,7 +176,7 @@ export const alert = () => {
   Burnt.alert({
     title: "Congrats!", // required
 
-    preset: "done", // or "error", "heart"
+    preset: "done", // or "error", "heart", "custom"
 
     message: "", // optional
 
@@ -183,7 +188,13 @@ export const alert = () => {
         height: 24,
         width: 24,
       },
-      // TODO: custom SF Symbols...
+    },
+    icon: {
+      ios: {
+        // SF Symbol. For a full list, see https://developer.apple.com/sf-symbols/.
+        name: "checkmark.seal",
+        color: "#1D9BF0",
+      },
     },
   });
 };
