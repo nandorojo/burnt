@@ -82,12 +82,6 @@ struct AlertOptions: Record {
 }
 struct Icon: Record {
   @Field
-  var width: Int?
-  
-  @Field
-  var height: Int?
-  
-  @Field
   var name: String? = nil
   
   @Field
