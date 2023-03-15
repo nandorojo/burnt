@@ -136,9 +136,9 @@ Burnt.toast({
 
   message: '',        // optional
 
-  haptic: 'none'      // or "success", "warning", "error"
+  haptic: 'none',      // or "success", "warning", "error"
 
-  duration: 2         // duration in seconds
+  duration: 2,         // duration in seconds
 
   shouldDismissByDrag: true,
 
