@@ -35,6 +35,7 @@ thanks to Expo's new module system.
 - Animated icons
 - iOS App Store-like `alert` popups
 - Overlays on top of native iOS modals
+- Loading alerts
 
 
 ## Modals
