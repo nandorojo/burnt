@@ -141,8 +141,6 @@ Be sure to follow the [expo](#expo) instructions too.
 
 https://user-images.githubusercontent.com/13172299/202275423-300671e5-3918-4d5d-acae-0602160de252.mp4
 
-_The API changed since recording this video. It now uses object syntax._
-
 `toast(options): Promise<void>`
 
 ```tsx
