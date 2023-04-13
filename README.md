@@ -158,7 +158,6 @@ Burnt.toast({
       color: "#1D9BF0",
     },
   },
-  },
 })
 ```
 
