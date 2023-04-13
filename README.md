@@ -149,6 +149,7 @@ Burnt.toast({
     iconSize: {
       height: 24,
       width: 24,
+    }
   },
   icon: {
     ios: {
