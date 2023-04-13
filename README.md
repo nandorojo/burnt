@@ -4,6 +4,12 @@ Cross-platform toasts for React Native, powered by native elements.
 
 https://user-images.githubusercontent.com/13172299/202289223-8a333223-3afa-49c4-a001-a70c76150ef0.mp4
 
+
+
+https://user-images.githubusercontent.com/13172299/231801324-3f0858a6-bd61-4d74-920f-4e77b80d26c1.mp4
+
+
+
 ## Context
 
 See this
@@ -28,7 +34,18 @@ thanks to Expo's new module system.
   rather than using React state with JS-based UI.
 - Animated icons
 - iOS App Store-like `alert` popups
-- Overlays on top of native iOS modals, unlike JS-based solutions (video)[https://twitter.com/FernandoTheRojo/status/1593632122069291008].
+- Overlays on top of native iOS modals
+
+
+## Modals
+
+Displaying toasts on top of modals has always been an issue in React Native. With Burnt, this works out of the box.
+
+
+
+https://user-images.githubusercontent.com/13172299/231801096-2894fbf3-4df7-45d7-9c72-f80d36fd45ef.mp4
+
+
 
 ## Usage
 
