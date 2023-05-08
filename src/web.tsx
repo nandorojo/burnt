@@ -11,6 +11,7 @@ export function getHasMountedWebToaster() {
 export const Toaster: (typeof Sonner)["Toaster"] = (props) => {
   hasMountedToaster = true;
   useEffect(() => {
+    hasMountedToaster = true;
     return () => {
       hasMountedToaster = false;
     };
