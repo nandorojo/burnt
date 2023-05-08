@@ -110,7 +110,7 @@ export default function App() {
         style={[styles.text, styles.blue]}
         onPress={async () => {
           Burnt.toast({
-            title: "This is a large text and without icon toast!!!",
+            title: "This toast has more text, without an icon or a message.",
             preset: "none",
           });
         }}
@@ -122,11 +122,11 @@ export default function App() {
         style={[styles.text, styles.blue]}
         onPress={async () => {
           Burnt.toast({
-            title: "This is a large text and custom icon toast!!!",
+            title: "This toast has more text, and it also has a custom icon.",
             preset: "custom",
             icon: {
               ios: {
-                name: "sparkle",
+                name: "circle",
                 color: "#F7A51D",
               },
             },
