@@ -5,6 +5,8 @@ Cross-platform toasts for React Native, powered by native elements.
 - [Install](#installation)
 - [Usage](#api)
 
+Now with Android, iOS & Web Support.
+
 ## Alerts
 
 https://user-images.githubusercontent.com/13172299/202289223-8a333223-3afa-49c4-a001-a70c76150ef0.mp4
@@ -70,10 +72,6 @@ You can also `Burnt.alert()` and `Burnt.dismissAllAlerts()`.
 - [x] Android support
 - [x] Custom iOS icons
 - [x] Web support
-
-Chances are, I'll keep this lib to iOS & Android only, and then another library
-can consume it to build a broader API out on the JS side with Web support, such
-as [Zeego](https://zeego.dev).
 
 ## Installation
 
