@@ -6,13 +6,14 @@ export type IconParams = {
      * The name of an iOS-only SF Symbol. For a full list, see https://developer.apple.com/sf-symbols/.
      * @platform ios
      */
-    name: SFSymbol;
+    name: SFSymbol | (string & {});
     /**
      * Change the custom icon color, default is system blue.
      * @platform ios
      */
     color: string;
   };
+  web?: JSX.Element;
 };
 export type AlertOptions = {
   title: string;

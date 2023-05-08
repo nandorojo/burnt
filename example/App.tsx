@@ -1,8 +1,16 @@
-import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
+import {
+  Modal,
+  Platform,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 
 import * as Burnt from "burnt";
 import { useState } from "react";
 import { StatusBar } from "expo-status-bar";
+import { Toaster } from "burnt/web";
 
 export default function App() {
   const [modal, setModal] = useState(false);
@@ -69,6 +77,7 @@ export default function App() {
                 name: "checkmark.seal",
                 color: "#1D9BF0",
               },
+              web: <WebIcon />,
             },
           });
         }}
@@ -129,7 +138,9 @@ export default function App() {
                 name: "circle",
                 color: "#F7A51D",
               },
+              web: <WebIcon />,
             },
+            duration: Infinity,
           });
         }}
       >
@@ -139,27 +150,30 @@ export default function App() {
   );
 
   return (
-    <View style={styles.container}>
-      <StatusBar style="light" />
-      {content}
-      <View style={{ height: 16 }} />
-      <Text
-        style={[styles.text, styles.purple]}
-        onPress={async () => {
-          setModal(true);
-        }}
-      >
-        Open Modal
-      </Text>
-      <Modal
-        presentationStyle="formSheet"
-        onRequestClose={() => setModal(false)}
-        visible={modal}
-        animationType="slide"
-      >
-        <View style={[styles.container]}>{content}</View>
-      </Modal>
-    </View>
+    <>
+      <View style={styles.container}>
+        <StatusBar style='light' />
+        {content}
+        <View style={{ height: 16 }} />
+        <Text
+          style={[styles.text, styles.purple]}
+          onPress={async () => {
+            setModal(true);
+          }}
+        >
+          Open Modal
+        </Text>
+        <Modal
+          presentationStyle='formSheet'
+          onRequestClose={() => setModal(false)}
+          visible={modal}
+          animationType='slide'
+        >
+          <View style={[styles.container]}>{content}</View>
+        </Modal>
+      </View>
+      <Toaster theme='dark' />
+    </>
   );
 }
 
@@ -198,3 +212,24 @@ const styles = StyleSheet.create({
   yellow: { backgroundColor: "#2C2100", color: "#F5D90A" },
   blue: { backgroundColor: "#0A1A2C", color: "#4CB5FF" },
 });
+
+const WebIcon = () => {
+  if (Platform.OS !== "web") return null;
+
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='24'
+      height='24'
+      viewBox='0 0 24 24'
+      fill='none'
+      stroke='currentColor'
+      stroke-width='2'
+      stroke-linecap='round'
+      stroke-linejoin='round'
+    >
+      <path d='m14 12-8.5 8.5a2.12 2.12 0 1 1-3-3L11 9'></path>
+      <path d='M15 13 9 7l4-4 6 6h3a8 8 0 0 1-7 7z'></path>
+    </svg>
+  );
+};

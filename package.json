@@ -29,7 +29,8 @@
   "license": "MIT",
   "homepage": "https://github.com/nandorojo/burnt#readme",
   "dependencies": {
-    "sf-symbols-typescript": "^1.0.0"
+    "sf-symbols-typescript": "^1.0.0",
+    "sonner": "^0.3.5"
   },
   "devDependencies": {
     "@types/react": "^18.0.25",

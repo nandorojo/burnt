@@ -5,15 +5,13 @@ Cross-platform toasts for React Native, powered by native elements.
 - [Install](#installation)
 - [Usage](#api)
 
-## Toasts
+## Alerts
 
 https://user-images.githubusercontent.com/13172299/202289223-8a333223-3afa-49c4-a001-a70c76150ef0.mp4
 
-## Alerts
+## ...and Toasts
 
 https://user-images.githubusercontent.com/13172299/231801324-3f0858a6-bd61-4d74-920f-4e77b80d26c1.mp4
-
-
 
 ## Context
 
@@ -28,7 +26,10 @@ On iOS, it wraps [`SPIndicator`](https://github.com/ivanvorobei/SPIndicator) and
 [`SPAlert`](https://github.com/ivanvorobei/SPAlert).
 
 On Android, it wraps `ToastAndroid` from `react-native`. `Burnt.alert()` falls
-back to `Burnt.toast()` on Android.
+back to `Burnt.toast()` on Android. This may change in a future version.
+
+On Web, it wraps [`sonner`](https://github.com/emilkowalski/sonner) by Emil
+Kowalski.
 
 Burnt works with both the old & new architectures. It's built on top of JSI,
 thanks to Expo's new module system.
@@ -42,16 +43,12 @@ thanks to Expo's new module system.
 - Overlays on top of native iOS modals
 - Loading alerts
 
-
 ## Modals
 
-Displaying toasts on top of modals has always been an issue in React Native. With Burnt, this works out of the box.
-
-
+Displaying toasts on top of modals has always been an issue in React Native.
+With Burnt, this works out of the box.
 
 https://user-images.githubusercontent.com/13172299/231801096-2894fbf3-4df7-45d7-9c72-f80d36fd45ef.mp4
-
-
 
 ## Usage
 
@@ -72,8 +69,7 @@ You can also `Burnt.alert()` and `Burnt.dismissAllAlerts()`.
 - [x] iOS support
 - [x] Android support
 - [x] Custom iOS icons
-- [ ] Web support (could be cool to use Radix UI...but maybe I'll leave that
-      part up to Zeego)
+- [x] Web support
 
 Chances are, I'll keep this lib to iOS & Android only, and then another library
 can consume it to build a broader API out on the JS side with Web support, such
@@ -121,6 +117,28 @@ npx expo run:ios
 The config plugin ensures that your iOS app has at least iOS 13 as a deployment
 target, which is required for Burnt (as well as Expo SDK 47+).
 
+### Web Support
+
+To enable Web support, you need to add the `<Toaster />` to the root of your
+app. If you're using Next.js, add this into your `_app.tsx` component.
+
+```tsx
+// _app.tsx
+import { Toaster } from "burnt/web";
+
+function MyApp({ Component, pageProps }) {
+  return (
+    <>
+      <Component {...pageProps} />
+      <Toaster position='bottom-right' />
+    </>
+  );
+}
+```
+
+To configure your `Toaster`, please reference the `sonner`
+[docs](https://github.com/emilkowalski/sonner/tree/main#theme).
+
 ### Plain React Native
 
 ```sh
@@ -138,7 +156,8 @@ cd ../..
 yarn
 ```
 
-Be sure to follow the [expo](#expo) instructions too.
+Be sure to also follow the [expo](#expo) instructions and [web](#web-support)
+instructions.
 
 ## API
 
@@ -150,26 +169,26 @@ https://user-images.githubusercontent.com/13172299/202275423-300671e5-3918-4d5d-
 
 ```tsx
 Burnt.toast({
-  title: 'Congrats!', // required
+  title: "Congrats!", // required
 
-  preset: 'done',     // or "error", "none", "custom"
+  preset: "done", // or "error", "none", "custom"
 
-  message: '',        // optional
+  message: "", // optional
 
-  haptic: 'none',      // or "success", "warning", "error"
+  haptic: "none", // or "success", "warning", "error"
 
-  duration: 2,         // duration in seconds
+  duration: 2, // duration in seconds
 
   shouldDismissByDrag: true,
 
-  from: 'bottom', // ios only, "top" or "bottom"
+  from: "bottom", // ios only, "top" or "bottom"
 
   // optionally customize layout
   layout: {
     iconSize: {
       height: 24,
       width: 24,
-    }
+    },
   },
   icon: {
     ios: {
@@ -177,8 +196,9 @@ Burnt.toast({
       name: "checkmark.seal",
       color: "#1D9BF0",
     },
+    web: <Icon />,
   },
-})
+});
 ```
 
 ### `alert`
@@ -215,10 +235,13 @@ export const alert = () => {
         name: "checkmark.seal",
         color: "#1D9BF0",
       },
+      web: <Icon />,
     },
   });
 };
 ```
+
+On Web, this will display a regular toast. This may change in the future.
 
 ### `dismissAllAlerts()`
 
