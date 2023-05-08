@@ -12,7 +12,7 @@ const getPlatfomIconProps = (params: IconParams) => {
   return { ...params.ios, color };
 };
 export default {
-  toast(options: ToastOptions) {
+  toastAsync(options: ToastOptions) {
     BurntModule.toast({
       ...options,
       icon:
@@ -21,7 +21,7 @@ export default {
           : undefined,
     });
   },
-  alert(options: AlertOptions) {
+  alertAsync(options: AlertOptions) {
     BurntModule.alert({
       ...options,
       icon:
@@ -30,7 +30,7 @@ export default {
           : undefined,
     });
   },
-  dismissAllAlerts() {
+  dismissAllAlertsAsync() {
     BurntModule.dismissAllAlerts();
   },
 };
