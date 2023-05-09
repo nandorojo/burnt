@@ -13,7 +13,7 @@ const getPlatfomIconProps = (params: IconParams) => {
 };
 export default {
   toastAsync(options: ToastOptions) {
-    BurntModule.toast({
+    BurntModule.toastAsync({
       ...options,
       icon:
         options.preset === "custom"
@@ -22,7 +22,7 @@ export default {
     });
   },
   alertAsync(options: AlertOptions) {
-    BurntModule.alert({
+    BurntModule.alertAsync({
       ...options,
       icon:
         options.preset === "custom"
@@ -31,6 +31,6 @@ export default {
     });
   },
   dismissAllAlertsAsync() {
-    BurntModule.dismissAllAlerts();
+    BurntModule.dismissAllAlertsAsync();
   },
 };
