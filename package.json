@@ -3,7 +3,7 @@
   "version": "0.11.4",
   "description": "Cross-platform toasts, powered by native elements.",
   "main": "build/index.js",
-  "types": "build/index.d.ts",
+  "types": "index.d.ts",
   "scripts": {
     "build": "expo-module build",
     "clean": "expo-module clean",
@@ -42,5 +42,11 @@
     "expo": "*",
     "react": "*",
     "react-native": "*"
-  }
+  },
+  "files": [
+    "build",
+    "web",
+    "src",
+    "index.d.ts"
+  ]
 }
