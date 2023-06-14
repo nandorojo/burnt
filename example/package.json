@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@expo/webpack-config": "^0.17.2",
+    "burnt": "^0.11.5",
     "expo": "~47.0.6",
     "expo-splash-screen": "~0.17.5",
     "expo-status-bar": "~1.4.2",
