@@ -1,6 +1,6 @@
 {
   "name": "burnt",
-  "version": "0.11.6",
+  "version": "0.11.7",
   "description": "Cross-platform toasts, powered by native elements.",
   "main": "build/index.js",
   "types": "index.d.ts",
@@ -49,6 +49,7 @@
     "src",
     "index.d.ts",
     "ios",
-    "android"
+    "android",
+    "expo-module.config.json"
   ]
 }
