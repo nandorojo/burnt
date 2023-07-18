@@ -84,7 +84,7 @@ yarn add burnt
 Burnt likely requires Expo SDK 46+.
 
 ```sh
-expo install burnt expo-build-properties
+npx expo install burnt expo-build-properties
 ```
 
 Add the `expo-build-properties` plugin to your `app.json`/`app.config.js`,
