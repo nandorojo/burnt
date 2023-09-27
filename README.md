@@ -183,7 +183,7 @@ Burnt.toast({
 
   shouldDismissByDrag: true,
 
-  from: "bottom", // ios only, "top" or "bottom"
+  from: "bottom", // "top" or "bottom"
 
   // optionally customize layout
   layout: {
