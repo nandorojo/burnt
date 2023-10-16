@@ -137,6 +137,25 @@ function MyApp({ Component, pageProps }) {
 To configure your `Toaster`, please reference the `sonner`
 [docs](https://github.com/emilkowalski/sonner/tree/main#theme).
 
+### Expo Web
+
+If you're using Expo Web, you'll need to add the following to your
+`metro.config.js` file:
+
+```js
+// Learn more https://docs.expo.io/guides/customizing-metro
+const { getDefaultConfig } = require("expo/metro-config");
+
+const config = getDefaultConfig(__dirname);
+
+// --- burnt ---
+config.resolver.sourceExts.push("mjs");
+config.resolver.sourceExts.push("cjs");
+// --- end burnt ---
+
+module.exports = config;
+```
+
 ### Plain React Native
 
 ```sh
