@@ -29,7 +29,7 @@ See this
 This is a library with a `toast` and `alert` method for showing ephemeral UI.
 
 On iOS, it wraps [`SPIndicator`](https://github.com/ivanvorobei/SPIndicator) and
-[`SPAlert`](https://github.com/ivanvorobei/SPAlert).
+[`AlertKit`](https://github.com/sparrowcode/AlertKit).
 
 On Android, it wraps `ToastAndroid` from `react-native`. `Burnt.alert()` falls
 back to `Burnt.toast()` on Android. This may change in a future version.
