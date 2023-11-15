@@ -138,6 +138,18 @@ function MyApp({ Component, pageProps }) {
 }
 ```
 
+You need to add `burnt` to your `transpilePackages` in `next.config.js`.
+
+```tsx
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  transpilePackages: [
+    // Your other packages here
+    "burnt"
+  ]
+}
+```
+
 To configure your `Toaster`, please reference the `sonner`
 [docs](https://github.com/emilkowalski/sonner/tree/main#theme).
 
