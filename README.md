@@ -138,7 +138,7 @@ function MyApp({ Component, pageProps }) {
 }
 ```
 
-You need to add `burnt` to your `transpilePackages` in `next.config.js`.
+If you're using Next.js, add `burnt` to your `transpilePackages` in `next.config.js`.
 
 ```tsx
 /** @type {import('next').NextConfig} */
