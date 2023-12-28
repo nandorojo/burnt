@@ -69,9 +69,9 @@ const DoneIcon = () => (
     viewBox='0 0 24 24'
     fill='none'
     stroke='currentColor'
-    stroke-width='2'
-    stroke-linecap='round'
-    stroke-linejoin='round'
+    strokeWidth='2'
+    strokeLinecap='round'
+    strokeLinejoin='round'
     className='lucide lucide-check'
     data-burnt-icon='check'
   >
@@ -82,7 +82,7 @@ const DoneIcon = () => (
       stroke-dashoffset: -50;
       animation: burnt-draw-checkmark 400ms linear forwards;
     }
-  
+
     @keyframes burnt-draw-checkmark {
       100% {
         stroke-dashoffset: 0;
@@ -103,9 +103,9 @@ const XIcon = () => {
       viewBox='0 0 24 24'
       fill='none'
       stroke='currentColor'
-      stroke-width='2'
-      stroke-linecap='round'
-      stroke-linejoin='round'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
       className='lucide lucide-x'
       data-burnt-icon='x'
     >
