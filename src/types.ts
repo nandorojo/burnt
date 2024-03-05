@@ -1,4 +1,5 @@
 import type { SFSymbol } from "sf-symbols-typescript";
+import type { ToastT } from "sonner";
 
 export type IconParams = {
   ios: {
@@ -78,7 +79,7 @@ type Layout = {
   };
 };
 
-export type BaseToastOptions = {
+export type BaseToastOptions = ToastT & {
   title: string;
   message?: string;
   /**
@@ -100,14 +101,6 @@ export type BaseToastOptions = {
    */
   from?: "top" | "bottom";
   layout?: Layout;
-  /**
-   * Adds an action button to the toast: https://sonner.emilkowal.ski/toast#action
-   * @platform web
-   */
-  action: {
-    label: string;
-    onClick: () => void;
-  };
 };
 
 export type CustomToastOptions = Omit<BaseToastOptions, "preset"> & {
