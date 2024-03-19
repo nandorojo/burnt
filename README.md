@@ -286,6 +286,7 @@ promises, and it'll be useful then.
 ```sh
 yarn build
 cd example
+yarn
 npx expo run:ios # do this again whenever you change native code
 ```
 
