@@ -21,10 +21,19 @@ enum AlertPreset: String, Enumerable {
       case .spinner:
         return .spinner
       case .custom:
-        guard let image = UIImage.init( systemName: options?.icon?.name ?? "swift") else {
-          throw BurntError.invalidSystemName
+        let weight: UIImage.SymbolWeight
+        do {
+            weight = try toFontWeight(from: options?.icon?.fontWeight)
+        } catch {
+            throw BurntError.invalidIconWeight
         }
-        return .custom((image.withTintColor(options?.icon?.color ?? .systemBlue, renderingMode: .alwaysOriginal)))
+
+        let configuration = UIImage.SymbolConfiguration(weight: weight)
+         guard let image = UIImage(systemName: options?.icon?.name ?? "swift", withConfiguration: configuration) else {
+            throw BurntError.invalidSystemName
+        }
+
+        return .custom(image.withTintColor(options?.icon?.color ?? .systemBlue, renderingMode: .alwaysOriginal))
     }
   }
 }
@@ -86,6 +95,9 @@ struct Icon: Record {
   
   @Field
   var color: UIColor = .systemGray
+
+  @Field
+  var fontWeight: String = "regular"
 }
 
 struct IconSize: Record {
@@ -168,6 +180,7 @@ enum ToastHaptic: String, Enumerable {
 }
 enum BurntError: Error {
   case invalidSystemName
+  case invalidIconWeight
 }
 enum ToastPreset: String, Enumerable {
   case done
@@ -184,13 +197,23 @@ enum ToastPreset: String, Enumerable {
       case .none:
         return .none
       case .custom:
-        guard let image = UIImage.init( systemName: options?.icon?.name ?? "swift") else {
-          throw BurntError.invalidSystemName
+        let weight: UIImage.SymbolWeight
+        do {
+            weight = try toFontWeight(from: options?.icon?.fontWeight)
+        } catch {
+            throw BurntError.invalidIconWeight
         }
+
+        let configuration = UIImage.SymbolConfiguration(weight: weight)
+         guard let image = UIImage(systemName: options?.icon?.name ?? "swift", withConfiguration: configuration) else {
+            throw BurntError.invalidSystemName
+        }
+
         return .custom(image.withTintColor(options?.icon?.color ?? .systemBlue, renderingMode: .alwaysOriginal))
     }
   }
 }
+
 
 enum ToastPresentSide: String, Enumerable {
   case top
@@ -265,4 +288,19 @@ public class BurntModule: Module {
       return SPAlert.dismiss()
     }.runOnQueue(.main)
   }
+}
+
+func toFontWeight(from string: String?) -> UIImage.SymbolWeight {
+    switch string?.lowercased() {
+    case "ultralight": return .ultraLight
+    case "thin": return .thin
+    case "light": return .light
+    case "regular": return .regular
+    case "medium": return .medium
+    case "semibold": return .semibold
+    case "bold": return .bold
+    case "heavy": return .heavy
+    case "black": return .black
+    default: return .regular
+    }
 }
