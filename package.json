@@ -30,7 +30,7 @@
   "homepage": "https://github.com/nandorojo/burnt#readme",
   "dependencies": {
     "sf-symbols-typescript": "^1.0.0",
-    "sonner": "^0.3.5"
+    "sonner": "^2.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.25",

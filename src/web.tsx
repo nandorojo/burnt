@@ -8,7 +8,8 @@ export function getHasMountedWebToaster() {
   return hasMountedToaster;
 }
 
-export const Toaster: (typeof Sonner)["Toaster"] = (props) => {
+
+export const Toaster = (props: Sonner.ToasterProps) => {
   hasMountedToaster = true;
   useEffect(() => {
     hasMountedToaster = true;
