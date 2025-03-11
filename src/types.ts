@@ -12,6 +12,20 @@ export type IconParams = {
      * @platform ios
      */
     color: string;
+    /**
+     * Change the custom icon font weight, default is system regular.
+     * @platform ios
+     */
+    fontWeight:
+      | "ultralight"
+      | "thin"
+      | "light"
+      | "regular"
+      | "medium"
+      | "semibold"
+      | "bold"
+      | "heavy"
+      | "black";
   };
   web?: JSX.Element;
 };
