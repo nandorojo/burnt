@@ -8,7 +8,7 @@ export default {
   toast() {
     if (isDev) {
       console.log(
-        "[burnt] Burnt.alert() is not implemented on this platform. Just making sure you know."
+        "[burnt] Burnt.toast() is not implemented on this platform. Just making sure you know."
       );
     }
   },
