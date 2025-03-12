@@ -10,7 +10,7 @@ enum AlertPreset: String, Enumerable {
   case spinner
   case custom
   
-  func toSPAlertIconPreset(_ options: AlertOptions?) throws -> SPAlertIconPreset {
+  func toAlertIcon(_ options: AlertOptions?) throws -> AlertIcon {
     switch self {
       case .done:
         return .done
@@ -19,7 +19,7 @@ enum AlertPreset: String, Enumerable {
       case .heart:
         return .heart
       case .spinner:
-        return .spinner
+        return .spinnerSmall
       case .custom:
         guard let image = UIImage.init( systemName: options?.icon?.name ?? "swift") else {
           throw BurntError.invalidSystemName
@@ -30,13 +30,13 @@ enum AlertPreset: String, Enumerable {
 }
 
 
-enum AlertHaptic: String, Enumerable {
+enum AlertHapticFeedback: String, Enumerable {
   case success
   case warning
   case error
   case none
   
-  func toSPAlertHaptic() -> SPAlertHaptic {
+  func toAlertHaptic() -> AlertHaptic {
     switch self {
       case .success:
         return .success
@@ -72,7 +72,7 @@ struct AlertOptions: Record {
   var shouldDismissByTap: Bool = true
   
   @Field
-  var haptic: AlertHaptic = .none
+  var haptic: AlertHapticFeedback = .none
   
   @Field
   var layout: AlertLayout?
@@ -235,34 +235,34 @@ public class BurntModule: Module {
     }.runOnQueue(.main)
     
     AsyncFunction("alertAsync")  { (options: AlertOptions) -> Void in
-      var preset: SPAlertIconPreset?
+      var preset: AlertIcon?
       do {
-        preset = try options.preset.toSPAlertIconPreset(options)
+        preset = try options.preset.toAlertIcon(options)
       } catch {
         log.error("Burnt Alert error: \(error)")
       }
+
+      guard let window = UIApplication.shared.windows.filter({ $0.isKeyWindow }).first else { return }
       
-      let view = SPAlertView(
+      let view = AlertAppleMusic16View(
         title: options.title,
-        message: options.message,
-        preset: preset ?? .done)
+        subtitle: options.message,
+        icon: preset ?? .done
+      )
       
       if let duration = options.duration {
         view.duration = duration
       }
       
       view.dismissByTap = options.shouldDismissByTap
-      
-      if let icon = options.layout?.iconSize {
-        view.layout.iconSize = .init(width: icon.width, height: icon.height)
-      }
-      
-      view.present(
-        haptic: options.haptic.toSPAlertHaptic())
+
+      view.haptic = options.haptic.toAlertHaptic()
+
+      view.present(on: window)
     }.runOnQueue(.main)
     
     AsyncFunction("dismissAllAlertsAsync") {
-      return SPAlert.dismiss()
+      return AlertKitAPI.dismissAllAlerts()
     }.runOnQueue(.main)
   }
 }
