@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import type { SFSymbol } from "sf-symbols-typescript";
 
 export type IconParams = {
