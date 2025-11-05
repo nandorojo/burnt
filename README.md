@@ -88,25 +88,7 @@ yarn add burnt
 Burnt likely requires Expo SDK 46+.
 
 ```sh
-npx expo install burnt expo-build-properties
-```
-
-Add the `expo-build-properties` plugin to your `app.json`/`app.config.js`,
-setting the deployment target to `13.0` (or higher):
-
-```js
-export default {
-  plugins: [
-    [
-      "expo-build-properties",
-      {
-        ios: {
-          deploymentTarget: "13.0",
-        },
-      },
-    ],
-  ],
-};
+npx expo install burnt
 ```
 
 Then, you'll need to rebuild your dev client. Burnt will not work in Expo Go.
