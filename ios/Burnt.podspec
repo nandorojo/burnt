@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.source         = { git: 'https://github.com/nandorojo/burnt' }
   s.static_framework = true
   s.dependency 'SPIndicator', '~> 1.6'
-  s.dependency 'SPAlert', '~> 4.2'
+  s.dependency 'SPAlert', '~> 5.1'
 
   s.dependency 'ExpoModulesCore'
 
