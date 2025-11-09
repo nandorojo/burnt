@@ -24,6 +24,7 @@ export default {
         description: options.message,
         icon: getIcon(options),
         duration: (options.duration ?? 5) * 1000,
+        action: options?.action
       });
     }
   },
