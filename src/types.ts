@@ -1,4 +1,5 @@
 import type { SFSymbol } from "sf-symbols-typescript";
+import type { ToastT } from "sonner";
 
 export type IconParams = {
   ios: {
@@ -78,7 +79,7 @@ type Layout = {
   };
 };
 
-export type BaseToastOptions = {
+export type BaseToastOptions = ToastT & {
   title: string;
   message?: string;
   /**
