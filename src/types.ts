@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import type { SFSymbol } from "sf-symbols-typescript";
 import type { ToastT } from "sonner";
 
